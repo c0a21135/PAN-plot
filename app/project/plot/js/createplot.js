@@ -3,6 +3,8 @@ var startplot = null;
 var startflag = false;
 var goalplot = null;
 var goalflag = false;
+var route = null;
+
 
 // // これはマップを表示するためのJavaScript
 
@@ -36,6 +38,28 @@ goalbtn.addEventListener("click", function(){
 searchbtn.addEventListener("click", function(){
     startflag = false;
     goalflag = false;
+
+    if (startplot && goalplot){ // スタートとゴールが設定されていたら経路探索
+        if (route){ // 既に経路探索されていたらその結果表示を消去
+            mymap.removeControl(route);
+        }
+
+        route = L.Routing.control({ // 探索開始
+            waypoints: [
+                L.latLng(startplot.getLatLng().lat, startplot.getLatLng().lng),
+                L.latLng(goalplot.getLatLng().lat, goalplot.getLatLng().lng)
+            ],
+            createMarker: function(i, waypoint, n) {
+                // nullを返すことで新しいマーカーを作成せずに非表示にする
+                return null;
+            },
+            
+            routeWhileDragging: false,
+        }).addTo(mymap);
+    }
+
+
+    
     
 });
     
@@ -66,7 +90,6 @@ mymap.on('click', function (e) {
     }
     
     });
-
 
 
 

@@ -19,7 +19,7 @@
 
 
     hogeeeee
-    <script src="/plot/js/index.js"></script>
+    <script src="/plot/js/map.js"></script>
     
 
     <%
