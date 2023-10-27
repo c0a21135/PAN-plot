@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-    <link rel="stylesheet" href="../css/style.css" type="text/css" />
+    <link rel="stylesheet" href="/plot/css/style.css" type="text/css" />
 
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -21,6 +21,9 @@
 
 <body>
     <div id="map"></div>
+    <p><input type="button" id="startbtn" value="スタート地点入力"></p>
+    <p><input type="button" id="goalbtn" value="ゴール地点入力"></p>
+    <p><input type="button" id="search" value="ルートから検索"></p>
 
 
     hogeeeee
