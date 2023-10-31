@@ -47,6 +47,7 @@
             <src path="${src}" />
             <classpath path="${lib}/servlet-api.jar" />
             <classpath path="${lib}/jsp-api.jar" />
+            <classpath path="${lib}/json-20231013.jar" />
             <!--<exclude name="**/*Test.java" />
       <exclude name="**/Test*.java" />  -->
         </javac>

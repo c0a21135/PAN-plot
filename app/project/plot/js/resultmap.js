@@ -1,9 +1,9 @@
 
-var startplot = null;
-var startflag = false;
-var goalplot = null;
-var goalflag = false;
-var route = null;
+// var startplot = null;
+// var startflag = false;
+// var goalplot = null;
+// var goalflag = false;
+// var route = null;
 var mymap = L.map('map');
 
 

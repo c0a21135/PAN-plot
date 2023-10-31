@@ -54,7 +54,7 @@
 
 
     <%-- 地図の表示 --%>
-    <script src="/plot/js/createplot.js"></script>
+    <script src="/plot/js/resultmap.js"></script>
     <%-- javascriptでマップピンの生成と表示 --%>
     <%
     // javaプログラムの埋め込み

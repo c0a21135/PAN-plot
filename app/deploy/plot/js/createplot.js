@@ -34,7 +34,7 @@ function sendCoordinatesToServlet(coordinates, start, goal) {
             console.log(response);
             console.log("応答2");
 
-            window.location.href="/plot/search";
+            // window.location.href="/plot/search";
         } else {
             console.error("エラー:"+ xhr.status);
         }
