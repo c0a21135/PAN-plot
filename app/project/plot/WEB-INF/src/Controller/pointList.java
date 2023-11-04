@@ -37,7 +37,7 @@ public class pointList {
           // 遠すぎたら
           if (dist > reg_max) {
             // 必要な中継地点の数を算出
-            int rep_count = (int) (dist/reg_min);
+            int rep_count = (int) (dist/reg_max);
             // 中継地点をリストに追加
             double[] rep;
             for (int k=1; k<=rep_count; k++) {
