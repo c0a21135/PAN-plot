@@ -44,13 +44,13 @@ public class CatchRoute extends HttpServlet {
 
         // 始点の座標を取得
         JSONObject startData = jsonData.getJSONObject("start");
-        start[0] = startData.getDouble("lng");
-        start[1] = startData.getDouble("lat");
+        start[0] = startData.getDouble("lat");
+        start[1] = startData.getDouble("lng");
 
         // 終点の座標を取得
         JSONObject goalData = jsonData.getJSONObject("goal");
-        goal[0] = goalData.getDouble("lng");
-        goal[1] = goalData.getDouble("lat");
+        goal[0] = goalData.getDouble("lat");
+        goal[1] = goalData.getDouble("lng");
 
         // 経路の座標を取得
         JSONObject coordinate;
@@ -59,8 +59,8 @@ public class CatchRoute extends HttpServlet {
         while (coordinatesList.hasNext()) {
             coordinate = (JSONObject) coordinatesList.next();
             double[] route = new double[2];
-            route[0] = coordinate.getDouble("lng");
-            route[1] = coordinate.getDouble("lat");
+            route[0] = coordinate.getDouble("lat");
+            route[1] = coordinate.getDouble("lng");
             routeList.add(route);
         }
 

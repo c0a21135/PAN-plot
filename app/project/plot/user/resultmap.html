@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, Bean.*, Create.*"%>
 <!DOCTYPE html>
 <html>
 
@@ -14,28 +11,14 @@
 
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 
-    <%-- JavaScriptのグローバル変数を定義 --%>
-    <script>
-        var g_start;
-        var g_goal;
-        var g_route;
-        var g_startflag;
-        var g_goalflag;
-        // スタートボタンとゴールボタンを取得
-        var g_startbtn = document.getElementById("startbtn");
-        var g_goalbtn = document.getElementById("goalbtn");
-        var g_searchbtn = document.getElementById("search");
-    </script>
-
-    <%
-        RouteBean routeBean;
-        double[] start;
-        double[] goal;
     
-    %>
+    <script>
+        var global_start = "global_start";
+
+    </script>
 
 </head>
 
@@ -43,36 +26,26 @@
     <div id="map"></div>
     <p><input type="button" id="startbtn" value="スタート地点入力"></p>
     <p><input type="button" id="goalbtn" value="ゴール地点入力"></p>
-    <p><input type="button" id="search" value="再検索"></p>
+    <p><input type="button" id="search" value="ルートから検索"></p>
 
 
-    hogeeeee<br/>
+    hogeeeee<br />
 
 
 
 
+
+    <!-- 
     <% 
         if (session.getAttribute("testData") != null){
-            routeBean = (RouteBean)session.getAttribute("testData");
-            start = routeBean.getStart();
-            goal = routeBean.getGoal();
+            RouteBean routeBean = (RouteBean)session.getAttribute("testData");
+            double[] start = routeBean.getStart();
+            double[] goal = routeBean.getGoal();
     %>
             <%-- <%=session.getAttribute("testData")%><br/>
             <%=session.getAttribute("testData").getClass()%> --%>
             <%=start[0]%>, <%=start[1]%><br/>
             <%=goal[0]%>, <%=goal[1]%><br/>
-
-            <div hidden>
-                <p id="start_plotx"><%=start[0]%></p>
-                <p id="start_ploty"><%=start[1]%></p>
-                <p id="goal_plotx"><%=goal[0]%></p>
-                <p id="goal_ploty"><%=goal[1]%></p>
-            </div>
-            
-            <script>
-                g_start = [<%=start[0]%>, <%=start[1]%>];
-                g_goal = [<%=goal[0]%>, <%=goal[1]%>];
-            </script>
 
             <%
             ArrayList<double[]> routeList = routeBean.getRouteList();
@@ -86,12 +59,6 @@
             %>
 
     <%    } %>
-
-
-    <script>
-        
-    
-    </script>
 
 
     <%-- 地図の表示 --%>
@@ -115,8 +82,8 @@
     <%
         }
     }
-    %>
-     
+    %> -->
+
 </body>
 
 </html>

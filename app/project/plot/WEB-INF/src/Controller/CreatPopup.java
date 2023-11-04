@@ -63,7 +63,8 @@ public class CreatPopup extends HttpServlet {
             }
             // requestへセットする．
             request.setAttribute("restaurants", infoArray);
-            forwardURL = "/user/plotmap.jsp";
+            // forwardURL = "/user/plotmap.jsp";
+            forwardURL = "/user/resultmap.jsp";
 
         } catch (Exception e) {
             forwardURL = "/hello.jsp";

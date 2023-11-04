@@ -1,22 +1,46 @@
 
-// var startplot = null;
-// var startflag = false;
-// var goalplot = null;
-// var goalflag = false;
-// var route = null;
+var start = null;
+var startflag = false;
+var goal = null;
+var goalflag = false;
+var route = null;
 var mymap = L.map('map');
+
+// スタートボタンとゴールボタンを取得
+startbtn = document.getElementById("startbtn");
+goalbtn = document.getElementById("goalbtn");
+searchbtn = document.getElementById("search");
+
+var start_x = parseFloat(document.getElementById("start_plotx").textContent);
+var start_y = parseFloat(document.getElementById("start_ploty").textContent);
+var goal_x = parseFloat(document.getElementById("goal_plotx").textContent);
+var goal_y = parseFloat(document.getElementById("goal_ploty").textContent);
 
 
 
 // マップを表示する
 function initialize() {
-
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 20,
     attribution: '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(mymap);
 
+    start = L.marker([start_x, start_y]).addTo(mymap).bindPopup("スタート地点");
+    goal = L.marker([goal_x, goal_y]).addTo(mymap).bindPopup("ゴール地点");
+
     mymap.setView([35.62575, 139.34153], 15);
+
+    route = L.Routing.control({ // 探索開始
+        waypoints: [
+            L.latLng(start.getLatLng().lat, start.getLatLng().lng),
+            L.latLng(goal.getLatLng().lat, goal.getLatLng().lng)
+        ],
+        createMarker: function(i, waypoint, n) {
+            // nullを返すことで新しいマーカーを作成せずに非表示にする
+            return null;
+        },
+        routeWhileDragging: false,
+    }).addTo(mymap);   
 }
 
 // AJAXを使用してサーバーにcoordinatesデータを送信
@@ -33,8 +57,9 @@ function sendCoordinatesToServlet(coordinates, start, goal) {
             var response = xhr.responseText;
             console.log(response);
             console.log("応答2");
+            console.log(document.getElementById("start_plotx").textContent);
 
-            window.location.href="/plot/search";
+            // window.location.href="/plot/search";
         } else {
             console.error("エラー:"+ xhr.status);
         }
@@ -56,40 +81,38 @@ function sendCoordinatesToServlet(coordinates, start, goal) {
     xhr.send(jsonData);
 }
 
-// スタートボタンとゴールボタンを取得
-startbtn = document.getElementById("startbtn");
-goalbtn = document.getElementById("goalbtn");
-searchbtn = document.getElementById("search");
 
 startbtn.addEventListener("click", function(){
     startflag = true;
     goalflag = false;
 });
 
+
 goalbtn.addEventListener("click", function(){
     startflag = false;
     goalflag = true;
 });
 
+
 searchbtn.addEventListener("click", function(){
     startflag = false;
     goalflag = false;
 
-    if (startplot && goalplot){ // スタートとゴールが設定されていたら経路探索
+    if (start && goal){ // スタートとゴールが設定されていたら経路探索
         if (route){ // 既に経路探索されていたらその結果表示を消去
             mymap.removeControl(route);
         }
 
+        console.log(start.getLatLng());
         route = L.Routing.control({ // 探索開始
             waypoints: [
-                L.latLng(startplot.getLatLng().lat, startplot.getLatLng().lng),
-                L.latLng(goalplot.getLatLng().lat, goalplot.getLatLng().lng)
+                L.latLng(start.getLatLng().lat, start.getLatLng().lng),
+                L.latLng(goal.getLatLng().lat, goal.getLatLng().lng)
             ],
             createMarker: function(i, waypoint, n) {
                 // nullを返すことで新しいマーカーを作成せずに非表示にする
                 return null;
             },
-            
             routeWhileDragging: false,
         }).addTo(mymap);
 
@@ -100,11 +123,11 @@ searchbtn.addEventListener("click", function(){
             console.log(coordinates);
             console.log(coordinates.contentType);
 
-            var start = {lat: startplot.getLatLng().lat, lng: startplot.getLatLng().lng};
-            var goal = {lat: goalplot.getLatLng().lat, lng: goalplot.getLatLng().lng};
+            var start1 = {lat: start.getLatLng().lat, lng: start.getLatLng().lng};
+            var goal1 = {lat: goal.getLatLng().lat, lng: goal.getLatLng().lng};
 
             // coordinatesの経路情報をServletに送信
-            sendCoordinatesToServlet(coordinates, start, goal);
+            sendCoordinatesToServlet(coordinates, start1, goal1);
         })
     }
 
@@ -117,25 +140,29 @@ searchbtn.addEventListener("click", function(){
 
 // マップをクリックした時のイベント
 mymap.on('click', function (e) {
+    // console.log(Object.prototype.toString.call(e));
     if (startflag){ //スタート地点入力モードか判定
-        if (mymap && startplot){
+        if (mymap && start){
             // もしスタート地点がプロットされていたら消す
-            mymap.removeLayer(startplot);
-            startplot = null;
+            mymap.removeLayer(start);
+            start = null;
         }
-        if (mymap && !startplot){
-            startplot = L.marker([e.latlng.lat, e.latlng.lng]).addTo(mymap).bindPopup("スタート地点");
+        if (mymap && !start){
+            // start = L.marker([139.3, 35.6]).addTo(mymap).bindPopup("スタート地点");
+            start = L.marker([e.latlng.lat, e.latlng.lng]).addTo(mymap).bindPopup("スタート地点");
+            // console.log(typeof 139.4=== typeof e.latlng.lat);
+
         }
     }
 
     if (goalflag){ // ゴール地点入力モードか判定
-        if (mymap && goalplot){
+        if (mymap && goal){
             // もしスタート地点がプロットされていたら消す
-            mymap.removeLayer(goalplot);
-            goalplot = null;
+            mymap.removeLayer(goal);
+            goal = null;
         }
-        if (mymap && !goalplot){
-            goalplot = L.marker([e.latlng.lat, e.latlng.lng]).addTo(mymap).bindPopup("ゴール地点");
+        if (mymap && !goal){
+            goal = L.marker([e.latlng.lat, e.latlng.lng]).addTo(mymap).bindPopup("ゴール地点");
         }
     }
     
