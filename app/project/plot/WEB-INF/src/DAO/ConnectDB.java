@@ -33,7 +33,7 @@ public class ConnectDB {
             // Java->MySQLへお話をするための準備
             Class.forName("com.mysql.jdbc.Driver"); // com.mysql.jdbc.Driver com.mysql.cj.jdbc.Driver
             // DB接続
-            this.con = DriverManager.getConnection("jdbc:mysql://pan_3db:3306/database",
+            this.con = DriverManager.getConnection("jdbc:mysql://pan_3db:3306/pan_3db",
                     this.db_id, this.db_password);
         } catch (Exception e) {
             e.printStackTrace();
