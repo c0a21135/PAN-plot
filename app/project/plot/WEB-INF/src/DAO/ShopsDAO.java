@@ -99,21 +99,17 @@ public class ShopsDAO {
         Statement stmt = null;
         ResultSet rs = null;
         ShopsDTO sdto = new ShopsDTO();
-        String sql = "select locations.location_id,shops.shop_name,location_x,location_y from locations join shops on locations.location_id = shops.location_id";
+        String sql = "select locations.location_id as location_id, shops.shop_name as shop_name, location_x, location_y from locations join shops on locations.location_id = shops.location_id";
         try {
             connect();
             stmt = con.createStatement();
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 ShopsBean sb = new ShopsBean();
-                sb.setShopId(rs.getInt("shop_id"));
+                sb.setShopId(rs.getInt("location_id"));
                 sb.setShopName(rs.getString("shop_name"));
-                sb.setCategory(rs.getString("category"));
-                sb.setAccess(rs.getString("access"));
-                sb.setAddress(rs.getString("address"));
-                sb.setTel(rs.getString("tel"));
-                sb.setUrl(rs.getString("url"));
-                sb.setInfo(rs.getString("info"));
+                sb.setLocationX(rs.getDouble("location_x"));
+                sb.setLocationY(rs.getDouble("location_y"));
                 sdto.add(sb);
             }
         } catch (Exception e) {
@@ -136,7 +132,7 @@ public class ShopsDAO {
         Statement stmt = null;
         ResultSet rs = null;
         ShopsDTO sdto = new ShopsDTO();
-        String sql = "select locations.location_id as location_id,shops.shop_name as shop_name,location_x,location_y from locations join shops on locations.location_id = shops.location_id where location_id="+id;
+        String sql = "select locations.location_id as location_id, shops.shop_name as shop_name, location_x, location_y from locations join shops on locations.location_id = shops.location_id where location_id="+id;
         try {
             connect();
             stmt = con.createStatement();
@@ -145,8 +141,58 @@ public class ShopsDAO {
                 ShopsBean sb = new ShopsBean();
                 sb.setShopId(rs.getInt("location_id"));
                 sb.setShopName(rs.getString("shop_name"));
-                sb.setLocationX(rs.getInt("location_x"));
-                sb.setLocationY(rs.getInt("location_y"));
+                sb.setLocationX(rs.getDouble("location_x"));
+                sb.setLocationY(rs.getDouble("location_y"));
+                sdto.add(sb);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null)
+                    rs.close();
+                if (stmt != null)
+                    stmt.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        disconnect();
+        return sdto;
+    }
+
+    public ShopsDTO seslectLocationWithXY(double prex, double prey, double x, double y) {
+        Statement stmt = null;
+        ResultSet rs = null;
+        ShopsDTO sdto = new ShopsDTO();
+
+        // 前の座標と今の座標で小さい方を基準とする
+        double base_x;
+        double base_y;
+        if (prex <= x){
+            base_x = prex;
+        } else{
+            base_x = x;
+        }
+        if (prey <= y){
+            base_y = prey;
+        } else {
+            base_y = y;
+        }
+
+        double d_x = Math.abs(prex - x);
+        double d_y = Math.abs(prey - y);
+        String sql = "select locations.location_id as location_id, shops.shop_name as shop_name, location_x, location_y from locations join shops on locations.location_id = shops.location_id where location_x between" + base_x + "and" + base_x+d_x + "and location_y between" + base_y + "and" + base_y+d_y;
+        try {
+            connect();
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                ShopsBean sb = new ShopsBean();
+                sb.setShopId(rs.getInt("location_id"));
+                sb.setShopName(rs.getString("shop_name"));
+                sb.setLocationX(rs.getDouble("location_x"));
+                sb.setLocationY(rs.getDouble("location_y"));
                 sdto.add(sb);
             }
         } catch (Exception e) {
