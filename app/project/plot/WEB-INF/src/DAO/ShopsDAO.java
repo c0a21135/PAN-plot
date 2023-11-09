@@ -1,6 +1,9 @@
 package DAO;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import Bean.*;
 
 public class ShopsDAO {
@@ -19,12 +22,12 @@ public class ShopsDAO {
         }
     }
 
-    public ShopsDTO seslect() {
+    public ShopsDTO select() {
         Statement stmt = null;
         ResultSet rs = null;
         ShopsDTO sdto = new ShopsDTO();
         String sql = "select shop_id,shop_name,categories.category_name as category,access,address,tel,url,info" + 
-                "from shops join categories on shops.category_id = categories.category_id";
+                " from shops join categories on shops.category_id = categories.category_id";
         try {
             connect();
             stmt = con.createStatement();
@@ -57,12 +60,12 @@ public class ShopsDAO {
         return sdto;
     }
 
-    public ShopsDTO seslectWithId(int id) {
+    public ShopsDTO selectWithId(int id) {
         Statement stmt = null;
         ResultSet rs = null;
         ShopsDTO sdto = new ShopsDTO();
         String sql = "select shop_id,shop_name,categories.category_name as category,access,address,tel,url,info " + 
-                "from shops join categories on shops.category_id = categories.category_id where shop_id="+id;
+                " from shops join categories on shops.category_id = categories.category_id where shop_id="+id;
         try {
             connect();
             stmt = con.createStatement();
@@ -95,7 +98,7 @@ public class ShopsDAO {
         return sdto;
     }
 
-    public ShopsDTO seslectLocation() {
+    public ShopsDTO selectLocation() {
         Statement stmt = null;
         ResultSet rs = null;
         ShopsDTO sdto = new ShopsDTO();
@@ -128,11 +131,11 @@ public class ShopsDAO {
         return sdto;
     }
 
-    public ShopsDTO seslectLocationWithId(int id) {
+    public ShopsDTO selectLocationWithId(int id) {
         Statement stmt = null;
         ResultSet rs = null;
         ShopsDTO sdto = new ShopsDTO();
-        String sql = "select locations.location_id as location_id, shops.shop_name as shop_name, location_x, location_y from locations join shops on locations.location_id = shops.location_id where location_id="+id;
+        String sql = "select locations.location_id as location_id, shops.shop_name as shop_name, location_x, location_y from locations join shops on locations.location_id = shops.location_id where locations.location_id="+id;
         try {
             connect();
             stmt = con.createStatement();
@@ -160,29 +163,88 @@ public class ShopsDAO {
         disconnect();
         return sdto;
     }
+    
 
-    public ShopsDTO seslectLocationWithXY(double prex, double prey, double x, double y) {
+    public ShopsDTO selectLocationWithXY(ArrayList<double[]> routeList) {
+        /*
+         * 移動経路の座標群routeListから
+         * 経路付近の店舗をDBから取得
+         * 検索方法は四角と円
+         */
+
         Statement stmt = null;
         ResultSet rs = null;
         ShopsDTO sdto = new ShopsDTO();
 
-        // 前の座標と今の座標で小さい方を基準とする
-        double base_x;
-        double base_y;
-        if (prex <= x){
-            base_x = prex;
-        } else{
-            base_x = x;
-        }
-        if (prey <= y){
-            base_y = prey;
-        } else {
-            base_y = y;
+        // 始点の座標を取得
+        double prex = routeList.get(0)[0];
+        double prey = routeList.get(0)[1];
+        // 引数の経路座標をIteratorにする
+        Iterator<double[]> ite_route = routeList.iterator();
+
+        String[] lst = new String[routeList.size()];
+        double d = 0.005; // 円の検索半径
+        int i = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        // 経路座標で回す
+        while (ite_route.hasNext()) {
+            double[] routes = ite_route.next();
+
+            // 1つ前の座標と今の座標の間にある店を取得
+            double x = routes[0];
+            double y = routes[1];
+
+            // 前の座標と今の座標で小さい方を基準とする
+            double base_x;
+            double base_y;
+            if (prex <= x) {
+                base_x = prex;
+            } else {
+                base_x = x;
+            }
+            if (prey <= y) {
+                base_y = prey;
+            } else {
+                base_y = y;
+            }
+            double d_x = Math.abs(prex - x);
+            double d_y = Math.abs(prey - y);
+
+            lst[i] = "location_x between "
+                    + base_x + " and " + (base_x + d_x) + " and location_y between " + base_y + " and " + (base_y + d_y) // 四角検索
+                    + " or (sqrt(pow(location_x-" + x + ",2)+pow(location_y-" + y + ",2)) <=" + d + ")"; // 円検索
+
+            prex = x;
+            prey = y;
+            i++;
         }
 
-        double d_x = Math.abs(prex - x);
-        double d_y = Math.abs(prey - y);
-        String sql = "select locations.location_id as location_id, shops.shop_name as shop_name, location_x, location_y from locations join shops on locations.location_id = shops.location_id where location_x between" + base_x + "and" + base_x+d_x + "and location_y between" + base_y + "and" + base_y+d_y;
+        // sql生成
+        String sql = "select locations.location_id as location_id, shops.shop_name as shop_name, location_x, location_y from locations join shops on locations.location_id = shops.location_id where "
+                + String.join(" or ", lst);
+
+        // DB接続
         try {
             connect();
             stmt = con.createStatement();
@@ -191,8 +253,8 @@ public class ShopsDAO {
                 ShopsBean sb = new ShopsBean();
                 sb.setShopId(rs.getInt("location_id"));
                 sb.setShopName(rs.getString("shop_name"));
-                sb.setLocationX(rs.getDouble("location_x"));
-                sb.setLocationY(rs.getDouble("location_y"));
+                sb.setLocationX(rs.getInt("location_x"));
+                sb.setLocationY(rs.getInt("location_y"));
                 sdto.add(sb);
             }
         } catch (Exception e) {
@@ -212,13 +274,15 @@ public class ShopsDAO {
     }
 
     public int insert(String name, int category_id, int locate_id) {
-        String sql = "INSERT INTO shops (user_name, category_id, locate_id) VALUES ('" + name + "', "+category_id+", "+locate_id+")";
+        String sql = "INSERT INTO shops (user_name, category_id, locate_id) VALUES ('" + name + "', " + category_id
+                + ", " + locate_id + ")";
         return executeSql(sql);
     }
 
     // public int updateStatus(int docked_number, int status) {
-    //     String sql = "UPDATE shops SET status = " + status + " WHERE docked_number = " + docked_number;
-    //     return executeSql(sql);
+    // String sql = "UPDATE shops SET status = " + status + " WHERE docked_number =
+    // " + docked_number;
+    // return executeSql(sql);
     // }
 
     public int delete(int shop_id) {

@@ -16,7 +16,7 @@ public class test {
              d = new double[2];   d[0]=10;  d[1]=9;   list.add(d);
              d = new double[2];   d[0]=12;  d[1]=10;  list.add(d);
 
-    pointList pt = new pointList();
+    PointList pt = new PointList();
     list = pt.pickPoint(list);
 
     System.out.println("==========");

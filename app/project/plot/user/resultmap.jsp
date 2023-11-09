@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, Bean.*, Create.*"%>
+<jsp:useBean id ="shopsDTO" scope="session" class="Bean.ShopsDTO" />
+<jsp:useBean id ="routeBean" scope="session" class="Bean.RouteBean" />
+<jsp:useBean id ="shop_locations" scope="request" class="Bean.ShopsDTO" />
 <!DOCTYPE html>
 <html>
 
@@ -31,7 +34,7 @@
     </script>
 
     <%
-        RouteBean routeBean;
+        // RouteBean routeBean;
         double[] start;
         double[] goal;
     
@@ -52,8 +55,7 @@
 
 
     <% 
-        if (session.getAttribute("testData") != null){
-            routeBean = (RouteBean)session.getAttribute("testData");
+        if (routeBean != null){
             start = routeBean.getStart();
             goal = routeBean.getGoal();
     %>
@@ -96,26 +98,53 @@
 
     <%-- 地図の表示 --%>
     <script src="/plot/js/resultmap.js"></script>
+
+
     <%-- javascriptでマップピンの生成と表示 --%>
     <%
     // javaプログラムの埋め込み
-    if (request.getAttribute("restaurants") != null){
-        ArrayList<RestaurantsBean> list = (ArrayList<RestaurantsBean>)request.getAttribute("restaurants");
-        Iterator<RestaurantsBean> ite = list.iterator();
+    if (shop_locations != null){
+        Iterator<ShopsBean> ite = shop_locations.iterator();
     %>
-
-
-    <%
-    while(ite.hasNext()){
-        RestaurantsBean bean = ite.next();
-    %>
+        locations-atta <br/>
+        <%=shop_locations.size()%> 
+        <%
+        while(ite.hasNext()){
+            ShopsBean bean = ite.next();
+        %>
+    
+            <%=bean.getShopName()%>, <%=bean.getLocationX()%>, <%=bean.getLocationY()%><br/>
         <script>
-            <%=CreatePlot.Plot(bean.getRestaurantName(),bean.getLocateX(),bean.getLocateY())%> 
+            <%=CreatePlot.Plot(bean.getShopName(),bean.getLocationX(),bean.getLocationY(), bean.getShopId())%> 
         </script>
     <%
         }
     }
     %>
+
+
+    <%-- 経路付近の店舗情報を表示する --%>
+    <%
+    if (shopsDTO != null){
+         Iterator<ShopsBean> ite = shopsDTO.iterator();
+    %>
+
+        shopsDTO-atta<br/>
+        <%=shopsDTO.size()%>
+        <%
+        while(ite.hasNext()){
+            ShopsBean bean = ite.next();
+        %>
+        
+            <%=bean.getShopName()%>, <%=bean.getLocationX()%>, <%=bean.getLocationY()%><br/>
+            <script>
+                <%=CreatePlot.Plot(bean.getShopName(),bean.getLocationX(),bean.getLocationY(), bean.getShopId())%> 
+            </script>
+        <%
+            }
+        }
+        %>
+
      
 </body>
 

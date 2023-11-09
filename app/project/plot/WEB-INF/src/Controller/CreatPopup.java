@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Bean.PanTestBean;
-import Bean.RestaurantsBean;
+import Bean.ShopsDTO;
 import DAO.ConnectDB;
+import DAO.ShopsDAO;
 
 import javax.servlet.RequestDispatcher;
 
@@ -28,50 +28,19 @@ public class CreatPopup extends HttpServlet {
         // HTTP応答のエンコード設定
         response.setContentType("text/html; charset=UTF-8");
 
-        ResultSet rs;
         String forwardURL = null;
 
-        try {
-            /** DB接続に関する共通部 START **/
-            // DB接続してStatementを取得する．
-            ConnectDB db = new ConnectDB();
+        // ShopsDAOオブジェクトを生成
+        ShopsDAO sdao = new ShopsDAO();
 
-            // SQL文の作成
-            String sql = "select * from restaurants";
+        ShopsDTO sdto;
+        sdto = sdao.selectLocation();
 
-            PreparedStatement stmt = db.getStmt(sql);
-            /** DB接続に関する共通部 END **/
+        // requestへセットする．
+        request.setAttribute("shop_locations", sdto);
+        // forwardURL = "/user/plotmap.jsp";
+        forwardURL = "/user/resultmap.jsp";
 
-            // 実行結果取得
-            rs = stmt.executeQuery();
-            // データがなくなるまで(rs.next()がfalseになるまで)繰り返す
-            int cnt = 0;
-            ArrayList<RestaurantsBean> infoArray = new ArrayList<RestaurantsBean>();
-            while (rs.next()) {
-                // カラムの値を取得する．
-                int id = rs.getInt("restaurant_id");
-                String name = rs.getString("restaurant_name");
-                double locate_x = rs.getDouble("locate_x");
-                double locate_y = rs.getDouble("locate_y");
-                // beanを生成
-                RestaurantsBean bean = new RestaurantsBean(id, name, locate_x, locate_y);
-                // bean.setPanId(id);
-                // Listへbeanを追加する．
-                infoArray.add(bean);
-                // 見つかった
-                cnt++;
-            }
-            // requestへセットする．
-            request.setAttribute("restaurants", infoArray);
-            // forwardURL = "/user/plotmap.jsp";
-            forwardURL = "/user/resultmap.jsp";
-
-        } catch (Exception e) {
-            forwardURL = "/hello.jsp";
-            request.setAttribute("er", e.getLocalizedMessage());
-            e.printStackTrace();
-        }
-        
         // 外部ファイルに転送する準備
         RequestDispatcher dispatcher = request.getRequestDispatcher(forwardURL);
         // 外部ファイルに表示処理を任せる

@@ -6,6 +6,18 @@ var goalflag = false;
 var route = null;
 var mymap = L.map('map');
 
+const redIcon = L.icon({
+    iconUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon.png",
+    iconRetinaUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon-2x.png",
+    shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41],
+    className: "icon-red", // <= ここでクラス名を指定
+  });
+
 // スタートボタンとゴールボタンを取得
 startbtn = document.getElementById("startbtn");
 goalbtn = document.getElementById("goalbtn");
@@ -16,8 +28,6 @@ var start_y = parseFloat(document.getElementById("start_ploty").textContent);
 var goal_x = parseFloat(document.getElementById("goal_plotx").textContent);
 var goal_y = parseFloat(document.getElementById("goal_ploty").textContent);
 
-
-
 // マップを表示する
 function initialize() {
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -25,8 +35,8 @@ function initialize() {
     attribution: '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(mymap);
 
-    start = L.marker([start_x, start_y]).addTo(mymap).bindPopup("スタート地点");
-    goal = L.marker([goal_x, goal_y]).addTo(mymap).bindPopup("ゴール地点");
+    start = L.marker([start_x, start_y], {icon: redIcon}).addTo(mymap).bindPopup("スタート地点");
+    goal = L.marker([goal_x, goal_y], {icon: redIcon}).addTo(mymap).bindPopup("ゴール地点");
 
     mymap.setView([35.62575, 139.34153], 15);
 
@@ -59,7 +69,7 @@ function sendCoordinatesToServlet(coordinates, start, goal) {
             console.log("応答2");
             console.log(document.getElementById("start_plotx").textContent);
 
-            // window.location.href="/plot/search";
+            window.location.href="/plot/search";
         } else {
             console.error("エラー:"+ xhr.status);
         }
@@ -148,10 +158,7 @@ mymap.on('click', function (e) {
             start = null;
         }
         if (mymap && !start){
-            // start = L.marker([139.3, 35.6]).addTo(mymap).bindPopup("スタート地点");
-            start = L.marker([e.latlng.lat, e.latlng.lng]).addTo(mymap).bindPopup("スタート地点");
-            // console.log(typeof 139.4=== typeof e.latlng.lat);
-
+            start = L.marker([e.latlng.lat, e.latlng.lng], {icon: redIcon}).addTo(mymap).bindPopup("スタート地点");
         }
     }
 
@@ -162,7 +169,7 @@ mymap.on('click', function (e) {
             goal = null;
         }
         if (mymap && !goal){
-            goal = L.marker([e.latlng.lat, e.latlng.lng]).addTo(mymap).bindPopup("ゴール地点");
+            goal = L.marker([e.latlng.lat, e.latlng.lng], {icon: redIcon}).addTo(mymap).bindPopup("ゴール地点");
         }
     }
     

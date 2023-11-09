@@ -18,11 +18,11 @@ public class ShopInfoServlet extends HttpServlet {
         
         int shop_id = Integer.parseInt(req.getParameter("shop_id"));
 
-        // CheckersDAOオブジェクトを生成
+        // ShopsDAOオブジェクトを生成
         ShopsDAO sdao = new ShopsDAO();
 
         ShopsDTO sdto;
-        sdto = sdao.seslectWithId(shop_id);
+        sdto = sdao.selectWithId(shop_id);
 
         req.setAttribute("sdto", sdto);
 

@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,6 +17,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Bean.RouteBean;
+import Bean.ShopsBean;
+import Bean.ShopsDTO;
+import DAO.ShopsDAO;
 
 @WebServlet("/catch-route")
 public class CatchRoute extends HttpServlet {
@@ -47,10 +48,8 @@ public class CatchRoute extends HttpServlet {
         start[0] = startData.getDouble("lat");
         start[1] = startData.getDouble("lng");
 
-        // 終点の座標を取得
-        JSONObject goalData = jsonData.getJSONObject("goal");
-        goal[0] = goalData.getDouble("lat");
-        goal[1] = goalData.getDouble("lng");
+        routeList.add(start);
+
 
         // 経路の座標を取得
         JSONObject coordinate;
@@ -64,6 +63,20 @@ public class CatchRoute extends HttpServlet {
             routeList.add(route);
         }
 
+
+        // 終点の座標を取得
+        JSONObject goalData = jsonData.getJSONObject("goal");
+        goal[0] = goalData.getDouble("lat");
+        goal[1] = goalData.getDouble("lng");
+        routeList.add(goal);
+
+
+        // routeListの整形
+        PointList pt = new PointList();
+        routeList = pt.pickPoint(routeList);
+        routeList.add(goal);
+
+        
         RouteBean routeBean = new RouteBean();
         routeBean.setStart(start);
         routeBean.setGoal(goal);
@@ -71,7 +84,16 @@ public class CatchRoute extends HttpServlet {
 
         // 例: データをセッションに保存
         HttpSession session = request.getSession();
-        session.setAttribute("testData", routeBean); // jsonDataに処理されたデータを入れて返す
+        session.setAttribute("routeBean", routeBean); // routeBeanをセッションに入れる
+
+        // 経路付近のお店を検索する
+        ShopsDAO sdao = new ShopsDAO();
+        ShopsDTO sdto = sdao.selectLocationWithXY(routeList);
+
+        session.setAttribute("shopsDTO", sdto);
+
+
+
 
         // ページへのリダイレクト
         // response.sendRedirect("user/plotmap.jsp");

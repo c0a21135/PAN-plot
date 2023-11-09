@@ -6,10 +6,6 @@ public class RestaurantsBean {
      */
     private int restaurantId;
      /**
-     * レストランの名前
-     */
-    private String restaurantName;
-     /**
      * レストランのX座標
      */
     private double locateX;
@@ -18,9 +14,8 @@ public class RestaurantsBean {
      */
     private double locateY;
 
-    public RestaurantsBean(int restaurantId, String restaurantName, double locateX, double locateY){
+    public RestaurantsBean(int restaurantId, double locateX, double locateY){
         this.restaurantId = restaurantId;
-        this.restaurantName = restaurantName;
         this.locateX = locateX;
         this.locateY = locateY;
     }
@@ -30,12 +25,6 @@ public class RestaurantsBean {
     }
     public void setRestaurantId(int restaurantId) {
         this.restaurantId = restaurantId;
-    }
-    public String getRestaurantName() {
-        return restaurantName;
-    }
-    public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
     }
     public double getLocateX() {
         return locateX;

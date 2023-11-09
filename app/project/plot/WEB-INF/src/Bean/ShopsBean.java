@@ -11,8 +11,8 @@ public class ShopsBean implements Serializable {
     private String tel;
     private String url;
     private String info;
-    private int location_x;
-    private int location_y;
+    private double location_x;
+    private double location_y;
     
     public int getShopId() {
       return shop_id;
@@ -62,16 +62,16 @@ public class ShopsBean implements Serializable {
     public void setInfo(String info) {
       this.info = info;
     }
-    public int getLocationX() {
+    public double getLocationX() {
       return location_x;
     }
-    public void setLocationX(int location_x) {
+    public void setLocationX(double location_x) {
       this.location_x = location_x;
     }
-    public int getLocationY() {
+    public double getLocationY() {
       return location_y;
     }
-    public void setLocationY(int location_y) {
+    public void setLocationY(double location_y) {
       this.location_y = location_y;
     }
 

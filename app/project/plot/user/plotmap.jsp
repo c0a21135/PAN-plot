@@ -29,8 +29,8 @@
 
     hogeeeee<br/>
     <% 
-        if (session.getAttribute("testData") != null){
-            RouteBean routeBean = (RouteBean)session.getAttribute("testData");
+        if (session.getAttribute("routeBean") != null){
+            RouteBean routeBean = (RouteBean)session.getAttribute("routeBean");
             double[] start = routeBean.getStart();
             double[] goal = routeBean.getGoal();
     %>
@@ -55,26 +55,6 @@
 
     <%-- 地図の表示 --%>
     <script src="/plot/js/createplot.js"></script>
-    <%-- javascriptでマップピンの生成と表示 --%>
-    <%
-    // javaプログラムの埋め込み
-    if (request.getAttribute("restaurants") != null){
-        ArrayList<RestaurantsBean> list = (ArrayList<RestaurantsBean>)request.getAttribute("restaurants");
-        Iterator<RestaurantsBean> ite = list.iterator();
-    %>
-
-
-    <%
-    while(ite.hasNext()){
-        RestaurantsBean bean = ite.next();
-    %>
-        <script>
-            <%=CreatePlot.Plot(bean.getRestaurantName(),bean.getLocateX(),bean.getLocateY())%> 
-        </script>
-    <%
-        }
-    }
-    %>
      
 </body>
 
