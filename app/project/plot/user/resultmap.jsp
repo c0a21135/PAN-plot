@@ -45,13 +45,13 @@
 </head>
 
 <body>
+
     <header>
-        <h2>Map<h2>
+        <h2>Map</h2>
         <div class="header-btn">
-            <button type="button" id="startbtn"><span class="dli-pin-fill"></span></button>
-            <button type="button" id="goalbtn"><span class="dli-pin-fill"></span></button>
-            <button type="button" id="search"><span class="magnifying_glass"></span>
-            </button>
+            <button type="button" id="startbtn"><div class="map-pin img-blue"></div></button>
+            <button type="button" id="goalbtn"><div class="map-pin img-red"></div></button>
+            <button type="button" id="search"><div class="map-pin img-search"></div></button>
         </div>
     </header>
 

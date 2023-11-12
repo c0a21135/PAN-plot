@@ -7,7 +7,7 @@ var route = null;
 var mymap = L.map('map');
 
 var redIcon = L.icon({
-    iconUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon.png",
+    iconUrl: "../image/map-pin_02_red.png",
     iconRetinaUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon-2x.png",
     shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",
     iconSize: [25, 41],
@@ -16,6 +16,17 @@ var redIcon = L.icon({
     tooltipAnchor: [16, -28],
     shadowSize: [41, 41],
     className: "icon-red", // <= ここでクラス名を指定
+  });
+  const blueIcon = L.icon({
+    iconUrl: "../image/map-pin_02_blue.png",
+    iconRetinaUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon-2x.png",
+    shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41],
+    className: "icon-blue", // <= ここでクラス名を指定
   });
 
 // スタートボタンとゴールボタンを取得
@@ -35,7 +46,7 @@ function initialize() {
     attribution: '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(mymap);
 
-    start = L.marker([start_x, start_y], {icon: redIcon}).addTo(mymap).bindPopup("スタート地点");
+    start = L.marker([start_x, start_y], {icon: blueIcon}).addTo(mymap).bindPopup("スタート地点");
     goal = L.marker([goal_x, goal_y], {icon: redIcon}).addTo(mymap).bindPopup("ゴール地点");
 
     mymap.setView([35.62575, 139.34153], 15);
