@@ -8,7 +8,7 @@ var mymap = L.map('map');
 
 var redIcon = L.icon({
     iconUrl: "../image/map-pin_02_red.png",
-    iconRetinaUrl: "./image/map-pin_02_red.png",
+    iconRetinaUrl: "../image/map-pin_02_red.png",
     shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",
     iconSize: [25, 41],
     iconAnchor: [12, 41],

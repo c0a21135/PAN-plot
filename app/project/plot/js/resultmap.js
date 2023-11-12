@@ -173,7 +173,7 @@ mymap.on('click', function (e) {
             start = null;
         }
         if (mymap && !start){
-            start = L.marker([e.latlng.lat, e.latlng.lng], {icon: redIcon}).addTo(mymap).bindPopup("スタート地点");
+            start = L.marker([e.latlng.lat, e.latlng.lng], {icon: blueIcon}).addTo(mymap).bindPopup("スタート地点");
         }
     }
 
