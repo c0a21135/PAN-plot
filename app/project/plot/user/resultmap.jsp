@@ -43,11 +43,19 @@
 </head>
 
 <body>
-    <div id="map"></div>
-    <p><input type="button" id="startbtn" value="スタート地点入力"></p>
-    <p><input type="button" id="goalbtn" value="ゴール地点入力"></p>
-    <p><input type="button" id="search" value="再検索"></p>
+    <header>
+        <h2>Map<h2>
+        <div class="header-btn">
+            <button type="button" id="startbtn"><span class="dli-pin-fill"></span></button>
+            <button type="button" id="goalbtn"><span class="dli-pin-fill"></span></button>
+            <button type="button" id="search"><span class="magnifying_glass"></span>
+            </button>
+        </div>
+    </header>
 
+    <div class="map">
+        <div id="map"></div>
+    </div>
 
     hogeeeee<br/>
 
@@ -145,7 +153,10 @@
         }
         %>
 
-     
+    <footer>
+        <h2>Footer</h2>
+    </footer>
+
 </body>
 
 </html>

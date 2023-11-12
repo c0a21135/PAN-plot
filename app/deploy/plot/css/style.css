@@ -22,7 +22,7 @@ top:0;
 height: 50px;
 justify-content: space-between;
 width: 100%;
-z-index: +1;
+z-index: +10;
 }
 header h2 {
 font-size: 1.5em;
@@ -89,7 +89,7 @@ box-sizing: border-box;
 border: 0.15em solid currentColor;
 border-radius: 50%;
 background-color:#ecfdff;
-z-index: +2;
+z-index: +15;
 content: "";
 }
 .magnifying_glass::after {
@@ -105,8 +105,9 @@ content: "";
 }
 
 .map{
+position: relative;
 margin: 50px 0;
-z-index: -1;
+z-index: 0;
 }
 
 /* フッター */
@@ -118,6 +119,7 @@ display: flex;
 height: 50px;
 justify-content: space-between;
 width: 100%;
+z-index: +11;
 }
 footer h2 {
 font-size: 1.5em;
