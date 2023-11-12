@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, Bean.*, Create.*"%>
 <!DOCTYPE html>
 <html>
 
@@ -14,9 +11,14 @@
 
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 
+    
+    <script>
+        var global_start = "global_start";
+
+    </script>
 
 </head>
 
@@ -27,10 +29,16 @@
     <p><input type="button" id="search" value="ルートから検索"></p>
 
 
-    hogeeeee<br/>
+    hogeeeee<br />
+
+
+
+
+
+    <!-- 
     <% 
-        if (session.getAttribute("routeBean") != null){
-            RouteBean routeBean = (RouteBean)session.getAttribute("routeBean");
+        if (session.getAttribute("testData") != null){
+            RouteBean routeBean = (RouteBean)session.getAttribute("testData");
             double[] start = routeBean.getStart();
             double[] goal = routeBean.getGoal();
     %>
@@ -54,8 +62,28 @@
 
 
     <%-- 地図の表示 --%>
-    <script src="/plot/js/createplot.js"></script>
-     
+    <script src="/plot/js/resultmap.js"></script>
+    <%-- javascriptでマップピンの生成と表示 --%>
+    <%
+    // javaプログラムの埋め込み
+    if (request.getAttribute("restaurants") != null){
+        ArrayList<RestaurantsBean> list = (ArrayList<RestaurantsBean>)request.getAttribute("restaurants");
+        Iterator<RestaurantsBean> ite = list.iterator();
+    %>
+
+
+    <%
+    while(ite.hasNext()){
+        RestaurantsBean bean = ite.next();
+    %>
+        <script>
+            <%=CreatePlot.Plot(bean.getRestaurantName(),bean.getLocateX(),bean.getLocateY())%> 
+        </script>
+    <%
+        }
+    }
+    %> -->
+
 </body>
 
 </html>
