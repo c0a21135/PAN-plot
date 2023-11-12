@@ -3,10 +3,6 @@
   height: 540px;
 }
 
-.icon-red { /* icon-redは最初に指定したクラス名 */
-  filter: hue-rotate(150deg);
-}
-
 body{
 padding:0;
 margin:0;
@@ -32,76 +28,39 @@ color: #00bcd4;
 
 /* ヘッダー用ボタン */
 .header-btn {
-text-align: right;
+  text-align: right;
+  margin: 0 5px 0 0;
 }
 .header-btn button {
-margin: 0.75em 0.2em;
-border: none;
-background: none;
+  width: 40px;
+  height: 40px;
+  margin: 5px 3px;
+  padding: 0;
+  border-radius: 3px;
+  border-color: #00bcd4;
+  background-color: #ecfdff;
+}
+.header-btn button:hover {
+  border-color: #00bcd4;
+  background-color: #aee3ea;
 }
 
-/* スタートピン */
-.dli-pin-fill {
-font-size: 25px;
-text-align: center;
-display: inline-block;
-vertical-align:auto;
-margin: auto 0 0.2em 0;
-color: #00bcd4;
-position: relative;
-width: 0.8em;
-height: 0.8em;
-background: currentColor;
-border: 0.1em solid currentColor;
-border-radius: 40% 60% 0% 100% / 40% 100% 0% 60%;
-box-sizing: content-box;
-transform: rotate(45deg);
+.map-pin{
+  width: 20px;
+  height: 33px;
+  margin: 0 auto;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
-.dli-pin-fill::before {
-content: '';
-position: absolute;
-top: 18%;
-left: 18%;
-width: 0.336em;
-height: 0.336em;
-background: #fff;
-border-radius: 50%;
-box-sizing: border-box;
+.img-blue {
+  background-image: url(../image/map-pin_01_blue.png);
 }
-
-/* 虫眼鏡 */
-.magnifying_glass {
-display: inline-block;
-position: relative;
-width: 1em;
-height: 1em;
-margin: auto 0 auto 0;
-color: #00bcd4;
-font-size: 30px;
+.img-red {
+  background-image: url(../image/map-pin_01_red.png);
 }
-.magnifying_glass::before {
-position: absolute;
-top: 0px;
-left: 0px;
-width: 0.7em;
-height: 0.7em;
-box-sizing: border-box;
-border: 0.15em solid currentColor;
-border-radius: 50%;
-background-color:#ecfdff;
-z-index: +15;
-content: "";
-}
-.magnifying_glass::after {
-position: absolute;
-top: 0px;
-left: 50%;
-transform: rotate(-45deg);
-width: 0.15em;
-height: 1.1em;
-box-sizing: border-box;
-background-color:currentColor;
-content: "";
+.img-search {
+  width: 33px;
+  background-image: url(../image/search.png);
 }
 
 .map{

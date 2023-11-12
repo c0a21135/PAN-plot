@@ -7,7 +7,7 @@ var route = null;
 var mymap = L.map('map');
 
 const redIcon = L.icon({
-    iconUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon.png",
+    iconUrl: "../image/map-pin_02_red.png",
     iconRetinaUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon-2x.png",
     shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",
     iconSize: [25, 41],
@@ -17,6 +17,17 @@ const redIcon = L.icon({
     shadowSize: [41, 41],
     className: "icon-red", // <= ここでクラス名を指定
   });
+const blueIcon = L.icon({
+    iconUrl: "../image/map-pin_02_blue.png",
+    iconRetinaUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon-2x.png",
+    shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41],
+    className: "icon-blue", // <= ここでクラス名を指定
+});
 
 // マップを表示する
 function initialize() {
@@ -135,7 +146,7 @@ mymap.on('click', function (e) {
             startplot = null;
         }
         if (mymap && !startplot){
-            startplot = L.marker([e.latlng.lat, e.latlng.lng], {icon:redIcon}).addTo(mymap).bindPopup("スタート地点");
+            startplot = L.marker([e.latlng.lat, e.latlng.lng], {icon:blueIcon}).addTo(mymap).bindPopup("スタート地点");
         }
     }
 
