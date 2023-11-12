@@ -105,7 +105,7 @@
 
                 <%=routes[0]%>, <%=routes[1]%><br/>
                 <script>
-                    <%=CreatePlot.Plot("中継地点",route[0],route[1])%> 
+                    <%=CreatePlot.Plot("中継地点",routes[0],routes[1])%> 
                 </script>
             <%
             }
