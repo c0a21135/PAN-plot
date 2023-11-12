@@ -101,6 +101,7 @@ searchbtn.addEventListener("click", function(){
             },
             
             routeWhileDragging: false,
+            show: false
         }).addTo(mymap);
 
         // 経路の座標情報取得

@@ -1,4 +1,156 @@
 
 #map {
-    height: 500px;
-  }
+  height: 540px;
+}
+
+.icon-red { /* icon-redは最初に指定したクラス名 */
+  filter: hue-rotate(150deg);
+}
+
+body{
+padding:0;
+margin:0;
+background-color: #ffffff00
+}
+
+/* ヘッダー */
+header {
+background-color: #ecfdff;
+position: fixed;
+display: flex;
+top:0;
+height: 50px;
+justify-content: space-between;
+width: 100%;
+z-index: +1;
+}
+header h2 {
+font-size: 1.5em;
+margin: auto 0 auto 1em; 
+color: #00bcd4;
+}
+
+/* ヘッダー用ボタン */
+.header-btn {
+text-align: right;
+}
+.header-btn button {
+margin: 0.75em 0.2em;
+border: none;
+background: none;
+}
+
+/* スタートピン */
+.dli-pin-fill {
+font-size: 25px;
+text-align: center;
+display: inline-block;
+vertical-align:auto;
+margin: auto 0 0.2em 0;
+color: #00bcd4;
+position: relative;
+width: 0.8em;
+height: 0.8em;
+background: currentColor;
+border: 0.1em solid currentColor;
+border-radius: 40% 60% 0% 100% / 40% 100% 0% 60%;
+box-sizing: content-box;
+transform: rotate(45deg);
+}
+.dli-pin-fill::before {
+content: '';
+position: absolute;
+top: 18%;
+left: 18%;
+width: 0.336em;
+height: 0.336em;
+background: #fff;
+border-radius: 50%;
+box-sizing: border-box;
+}
+
+/* 虫眼鏡 */
+.magnifying_glass {
+display: inline-block;
+position: relative;
+width: 1em;
+height: 1em;
+margin: auto 0 auto 0;
+color: #00bcd4;
+font-size: 30px;
+}
+.magnifying_glass::before {
+position: absolute;
+top: 0px;
+left: 0px;
+width: 0.7em;
+height: 0.7em;
+box-sizing: border-box;
+border: 0.15em solid currentColor;
+border-radius: 50%;
+background-color:#ecfdff;
+z-index: +2;
+content: "";
+}
+.magnifying_glass::after {
+position: absolute;
+top: 0px;
+left: 50%;
+transform: rotate(-45deg);
+width: 0.15em;
+height: 1.1em;
+box-sizing: border-box;
+background-color:currentColor;
+content: "";
+}
+
+.map{
+margin: 50px 0;
+z-index: -1;
+}
+
+/* フッター */
+footer {
+background-color: #ecfdff;
+position: fixed;
+bottom: 0;
+display: flex;
+height: 50px;
+justify-content: space-between;
+width: 100%;
+}
+footer h2 {
+font-size: 1.5em;
+margin: auto 0 auto 1em; 
+color: #00bcd4;
+}
+
+@media screen and (min-height: 641px) {
+#map {
+  height: 567px;
+}
+}
+@media screen and (min-height: 668px) {
+#map {
+  height: 712px;
+}
+}
+@media screen and (min-height: 813px) {
+#map {
+  height: 744px;
+}
+}
+@media screen and (min-height: 845px) {
+#map {
+  height: 796px;
+}
+}
+@media screen and (min-height: 896px) {
+#map {
+  height: 826px;
+}
+}
+
+@media screen and (min-width: 960px) {
+
+}
