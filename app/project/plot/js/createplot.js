@@ -6,7 +6,7 @@ var goalflag = false;
 var route = null;
 var mymap = L.map('map');
 
-const redIcon = L.icon({
+var redIcon = L.icon({
     iconUrl: "../image/map-pin_02_red.png",
     iconRetinaUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon-2x.png",
     shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",
@@ -17,7 +17,7 @@ const redIcon = L.icon({
     shadowSize: [41, 41],
     className: "icon-red", // <= ここでクラス名を指定
   });
-const blueIcon = L.icon({
+var blueIcon = L.icon({
     iconUrl: "../image/map-pin_02_blue.png",
     iconRetinaUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon-2x.png",
     shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",
