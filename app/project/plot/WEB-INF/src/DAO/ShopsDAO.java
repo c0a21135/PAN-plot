@@ -183,29 +183,8 @@ public class ShopsDAO {
         Iterator<double[]> ite_route = routeList.iterator();
 
         String[] lst = new String[routeList.size()];
-        double d = 0.005; // 円の検索半径
+        double d = 0.005; // 円の検索半径 0.00001 = 約1m　  0.005=約500m
         int i = 0;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         
         // 経路座標で回す
         while (ite_route.hasNext()) {

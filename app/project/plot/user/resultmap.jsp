@@ -98,17 +98,36 @@
     <%    } %>
 
 
-    <script>
-        
-    
-    </script>
-
 
     <%-- 地図の表示 --%>
     <script src="/plot/js/resultmap.js"></script>
 
 
     <%-- javascriptでマップピンの生成と表示 --%>
+    <% 
+        if (routeBean != null){
+            ArrayList<double[]> routeList = routeBean.getRouteList();
+            Iterator<double[]> route = routeList.iterator();
+            while(route.hasNext()){
+                double[] routes = route.next(); %>
+
+                <%=routes[0]%>, <%=routes[1]%><br/>
+                <script>
+                    <%=CreatePlot.Plot("中継地点",routes[0],routes[1])%> 
+                </script>
+            <%
+            }
+            %>
+
+    <%    } %>
+
+    <script>
+        
+    
+    </script>
+
+
+
     <%
     // javaプログラムの埋め込み
     if (shop_locations != null){

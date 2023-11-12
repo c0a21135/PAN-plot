@@ -114,6 +114,7 @@ searchbtn.addEventListener("click", function(){
             routeWhileDragging: false,
             show: false
         }).addTo(mymap);
+        mymap.removeControl(route);
 
         // 経路の座標情報取得
         route.on("routesfound", function(e){
