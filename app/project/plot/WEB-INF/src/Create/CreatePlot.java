@@ -9,9 +9,9 @@ public class CreatePlot {
     }
 
 
-    public static String Plot(String name, double locate_x, double locate_y){
+    public static String Plot(double locate_x, double locate_y){
         return
-        "var marker = L.marker(["+locate_x+","+ locate_y + "]).addTo(mymap);" +
-        "marker.bindPopup("+name+");";
+        "var marker = L.marker(["+locate_x+","+ locate_y + "], {icon: greenIcon}).addTo(mymap);" +
+        "marker.bindPopup(\"移動経路\");";
     }
 }

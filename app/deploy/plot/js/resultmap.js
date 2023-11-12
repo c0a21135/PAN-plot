@@ -6,7 +6,7 @@ var goalflag = false;
 var route = null;
 var mymap = L.map('map');
 
-const redIcon = L.icon({
+var redIcon = L.icon({
     iconUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon.png",
     iconRetinaUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon-2x.png",
     shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",
@@ -127,6 +127,7 @@ searchbtn.addEventListener("click", function(){
             routeWhileDragging: false,
             show: false
         }).addTo(mymap);
+        mymap.removeControl(route);
 
         // 経路の座標情報取得
         route.on("routesfound", function(e){

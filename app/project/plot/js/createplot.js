@@ -6,7 +6,7 @@ var goalflag = false;
 var route = null;
 var mymap = L.map('map');
 
-const redIcon = L.icon({
+var redIcon = L.icon({
     iconUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon.png",
     iconRetinaUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon-2x.png",
     shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",

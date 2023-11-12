@@ -22,15 +22,17 @@
 
     <%-- JavaScriptのグローバル変数を定義 --%>
     <script>
-        var g_start;
-        var g_goal;
-        var g_route;
-        var g_startflag;
-        var g_goalflag;
-        // スタートボタンとゴールボタンを取得
-        var g_startbtn = document.getElementById("startbtn");
-        var g_goalbtn = document.getElementById("goalbtn");
-        var g_searchbtn = document.getElementById("search");
+        var greenIcon = L.icon({
+        iconUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon.png",
+        iconRetinaUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon-2x.png",
+        shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        tooltipAnchor: [16, -28],
+        shadowSize: [41, 41],
+        className: "icon-green", // <= ここでクラス名を指定
+        });
     </script>
 
     <%
@@ -98,17 +100,36 @@
     <%    } %>
 
 
-    <script>
-        
-    
-    </script>
-
 
     <%-- 地図の表示 --%>
     <script src="/plot/js/resultmap.js"></script>
 
 
     <%-- javascriptでマップピンの生成と表示 --%>
+    <% 
+        if (routeBean != null){
+            ArrayList<double[]> routeList = routeBean.getRouteList();
+            Iterator<double[]> route = routeList.iterator();
+            while(route.hasNext()){
+                double[] routes = route.next(); %>
+
+                <%=routes[0]%>, <%=routes[1]%><br/>
+                <script>
+                    <%=CreatePlot.Plot(routes[0],routes[1])%> 
+                </script>
+            <%
+            }
+            %>
+
+    <%    } %>
+
+    <script>
+        
+    
+    </script>
+
+
+
     <%
     // javaプログラムの埋め込み
     if (shop_locations != null){

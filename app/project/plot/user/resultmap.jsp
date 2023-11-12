@@ -22,15 +22,17 @@
 
     <%-- JavaScriptのグローバル変数を定義 --%>
     <script>
-        var g_start;
-        var g_goal;
-        var g_route;
-        var g_startflag;
-        var g_goalflag;
-        // スタートボタンとゴールボタンを取得
-        var g_startbtn = document.getElementById("startbtn");
-        var g_goalbtn = document.getElementById("goalbtn");
-        var g_searchbtn = document.getElementById("search");
+        var greenIcon = L.icon({
+        iconUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon.png",
+        iconRetinaUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon-2x.png",
+        shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        tooltipAnchor: [16, -28],
+        shadowSize: [41, 41],
+        className: "icon-green", // <= ここでクラス名を指定
+        });
     </script>
 
     <%
@@ -113,7 +115,7 @@
 
                 <%=routes[0]%>, <%=routes[1]%><br/>
                 <script>
-                    <%=CreatePlot.Plot("中継地点",routes[0],routes[1])%> 
+                    <%=CreatePlot.Plot(routes[0],routes[1])%> 
                 </script>
             <%
             }
