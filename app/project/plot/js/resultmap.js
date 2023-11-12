@@ -18,6 +18,18 @@ const redIcon = L.icon({
     className: "icon-red", // <= ここでクラス名を指定
   });
 
+  const greenIcon = L.icon({
+    iconUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon.png",
+    iconRetinaUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon-2x.png",
+    shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41],
+    className: "icon-green", // <= ここでクラス名を指定
+  });
+
 // スタートボタンとゴールボタンを取得
 startbtn = document.getElementById("startbtn");
 goalbtn = document.getElementById("goalbtn");
@@ -50,6 +62,7 @@ function initialize() {
             return null;
         },
         routeWhileDragging: false,
+        show: false
     }).addTo(mymap);   
 }
 
@@ -124,7 +137,9 @@ searchbtn.addEventListener("click", function(){
                 return null;
             },
             routeWhileDragging: false,
+            show: false
         }).addTo(mymap);
+        mymap.removeControl(route);
 
         // 経路の座標情報取得
         route.on("routesfound", function(e){

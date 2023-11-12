@@ -7,3 +7,7 @@
   .icon-red { /* icon-redは最初に指定したクラス名 */
     filter: hue-rotate(150deg);
   }
+
+  .icon-green {
+    filter: hue-rotate(250deg);
+  }
