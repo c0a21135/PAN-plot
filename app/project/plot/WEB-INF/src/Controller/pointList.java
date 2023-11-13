@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class PointList {
 
-  private double reg_min = 0.001; // 0.00001 = 約1m
+  private double reg_min = 0.002; // 0.00001 = 約1m
   private double reg_max = 0.007;
 
   public ArrayList<double[]> pickPoint(ArrayList<double[]> list) {

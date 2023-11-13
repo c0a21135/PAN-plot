@@ -232,8 +232,8 @@ public class ShopsDAO {
                 ShopsBean sb = new ShopsBean();
                 sb.setShopId(rs.getInt("location_id"));
                 sb.setShopName(rs.getString("shop_name"));
-                sb.setLocationX(rs.getInt("location_x"));
-                sb.setLocationY(rs.getInt("location_y"));
+                sb.setLocationX(rs.getDouble("location_x"));
+                sb.setLocationY(rs.getDouble("location_y"));
                 sdto.add(sb);
             }
         } catch (Exception e) {
