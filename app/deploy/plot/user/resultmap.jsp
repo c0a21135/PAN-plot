@@ -22,17 +22,17 @@
 
     <%-- JavaScriptのグローバル変数を定義 --%>
     <script>
-        var greenIcon = L.icon({
-        iconUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon.png",
-        iconRetinaUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon-2x.png",
+        var yellowIcon = L.icon({
+        iconUrl: "/plot/image/map-pin_02_yellow.png",
+        iconRetinaUrl: "/plot/image/map-pin_02_yellow.png",
         shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",
         iconSize: [25, 41],
         iconAnchor: [12, 41],
         popupAnchor: [1, -34],
         tooltipAnchor: [16, -28],
         shadowSize: [41, 41],
-        className: "icon-green", // <= ここでクラス名を指定
-        });
+        className: "icon-yellow", // <= ここでクラス名を指定
+    });
     </script>
 
     <%
