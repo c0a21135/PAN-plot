@@ -175,9 +175,12 @@
         %>
 
     <footer>
-        <h2>Footer</h2>
+        <div class="menu home m-hover"><a href=""></a></div>
+        <div class="menu spot m-hover"><a href=""></a></div>
+        <div class="menu root-blue"></div>
+        <div class="menu favo m-hover"><a href=""></a></div>
+        <div class="menu log m-hover"><a href=""></a></div>
     </footer>
-
 </body>
 
 </html>

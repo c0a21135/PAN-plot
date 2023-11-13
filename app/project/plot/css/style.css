@@ -11,7 +11,7 @@ background-color: #ffffff00
 
 /* ヘッダー */
 header {
-background-color: #ecfdff;
+background-color: #f1f8f9;
 position: fixed;
 display: flex;
 top:0;
@@ -23,7 +23,7 @@ z-index: +10;
 header h2 {
 font-size: 1.5em;
 margin: auto 0 auto 1em; 
-color: #00bcd4;
+color: #79b8cf;
 }
 
 /* ヘッダー用ボタン */
@@ -37,11 +37,11 @@ color: #00bcd4;
   margin: 5px 3px;
   padding: 0;
   border-radius: 3px;
-  border-color: #00bcd4;
-  background-color: #ecfdff;
+  border-color: #89bfd2;
+  background-color: #f1f8f9;
 }
 .header-btn button:hover {
-  border-color: #00bcd4;
+  border-color: #89bfd2;
   background-color: #aee3ea;
 }
 
@@ -51,6 +51,7 @@ color: #00bcd4;
   margin: 0 auto;
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center;
 }
 .img-blue {
   background-image: url(../image/map-pin_01_blue.png);
@@ -59,7 +60,7 @@ color: #00bcd4;
   background-image: url(../image/map-pin_01_red.png);
 }
 .img-search {
-  width: 33px;
+  width: 30px;
   background-image: url(../image/search.png);
 }
 
@@ -71,7 +72,7 @@ z-index: 0;
 
 /* フッター */
 footer {
-background-color: #ecfdff;
+background-color: #f1f8f9;
 position: fixed;
 bottom: 0;
 display: flex;
@@ -80,10 +81,33 @@ justify-content: space-between;
 width: 100%;
 z-index: +11;
 }
-footer h2 {
-font-size: 1.5em;
-margin: auto 0 auto 1em; 
-color: #00bcd4;
+
+/* メニュー */
+.menu {
+  width: 20%;
+  height: 50px;
+  margin: 0 auto;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.m-hover:hover {
+  background-color: #aee3ea;
+}
+.home {
+  background-image: url(../image/menu_home.png);
+}
+.spot {
+  background-image: url(../image/menu_spot.png);
+}
+.root-blue {
+  background-image: url(../image/menu_root_blue.png);
+}
+.favo{
+  background-image: url(../image/menu_favo.png);
+}
+.log {
+  background-image: url(../image/menu_log.png);
 }
 
 @media screen and (min-height: 641px) {

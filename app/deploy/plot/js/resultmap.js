@@ -7,8 +7,8 @@ var route = null;
 var mymap = L.map('map');
 
 var redIcon = L.icon({
-    iconUrl: "../image/map-pin_02_red.png",
-    iconRetinaUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon-2x.png",
+    iconUrl: "/plot/image/map-pin_02_red.png",
+    iconRetinaUrl: "/plot/image/map-pin_02_red.png",
     shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",
     iconSize: [25, 41],
     iconAnchor: [12, 41],
@@ -17,9 +17,9 @@ var redIcon = L.icon({
     shadowSize: [41, 41],
     className: "icon-red", // <= ここでクラス名を指定
   });
-  const blueIcon = L.icon({
-    iconUrl: "../image/map-pin_02_blue.png",
-    iconRetinaUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-icon-2x.png",
+var blueIcon = L.icon({
+    iconUrl: "/plot/image/map-pin_02_blue.png",
+    iconRetinaUrl: "/plot/image/map-pin_02_blue.png",
     shadowUrl: "https://esm.sh/leaflet@1.9.2/dist/images/marker-shadow.png",
     iconSize: [25, 41],
     iconAnchor: [12, 41],
@@ -27,7 +27,8 @@ var redIcon = L.icon({
     tooltipAnchor: [16, -28],
     shadowSize: [41, 41],
     className: "icon-blue", // <= ここでクラス名を指定
-  });
+});
+
 
 // スタートボタンとゴールボタンを取得
 startbtn = document.getElementById("startbtn");
@@ -172,7 +173,7 @@ mymap.on('click', function (e) {
             start = null;
         }
         if (mymap && !start){
-            start = L.marker([e.latlng.lat, e.latlng.lng], {icon: redIcon}).addTo(mymap).bindPopup("スタート地点");
+            start = L.marker([e.latlng.lat, e.latlng.lng], {icon: blueIcon}).addTo(mymap).bindPopup("スタート地点");
         }
     }
 

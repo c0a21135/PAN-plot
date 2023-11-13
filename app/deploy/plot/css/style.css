@@ -3,10 +3,6 @@
   height: 540px;
 }
 
-.icon-green {
-  filter: hue-rotate(250deg);
-}
-
 body{
 padding:0;
 margin:0;
