@@ -59,44 +59,17 @@
         <div id="map"></div>
     </div>
 
-    hogeeeee<br/>
-
-
-
-
     <% 
         if (routeBean != null){
             start = routeBean.getStart();
             goal = routeBean.getGoal();
     %>
-            <%-- <%=session.getAttribute("testData")%><br/>
-            <%=session.getAttribute("testData").getClass()%> --%>
-            <%=start[0]%>, <%=start[1]%><br/>
-            <%=goal[0]%>, <%=goal[1]%><br/>
-
             <div hidden>
                 <p id="start_plotx"><%=start[0]%></p>
                 <p id="start_ploty"><%=start[1]%></p>
                 <p id="goal_plotx"><%=goal[0]%></p>
                 <p id="goal_ploty"><%=goal[1]%></p>
             </div>
-            
-            <script>
-                g_start = [<%=start[0]%>, <%=start[1]%>];
-                g_goal = [<%=goal[0]%>, <%=goal[1]%>];
-            </script>
-
-            <%
-            ArrayList<double[]> routeList = routeBean.getRouteList();
-            Iterator<double[]> route = routeList.iterator();
-            while(route.hasNext()){
-                double[] routes = route.next(); %>
-
-                <%=routes[0]%>, <%=routes[1]%><br/>
-            <%
-            }
-            %>
-
     <%    } %>
 
 
@@ -106,7 +79,7 @@
 
 
     <%-- javascriptでマップピンの生成と表示 --%>
-    <% 
+    <%-- <% 
         if (routeBean != null){
             ArrayList<double[]> routeList = routeBean.getRouteList();
             Iterator<double[]> route = routeList.iterator();
@@ -121,16 +94,10 @@
             }
             %>
 
-    <%    } %>
-
-    <script>
-        
-    
-    </script>
+    <%    } %> --%>
 
 
-
-    <%
+    <%-- <%
     // javaプログラムの埋め込み
     if (shop_locations != null){
         Iterator<ShopsBean> ite = shop_locations.iterator();
@@ -149,18 +116,13 @@
     <%
         }
     }
-    %>
+    %> --%>
 
 
     <%-- 経路付近の店舗情報を表示する --%>
     <%
     if (shopsDTO != null){
          Iterator<ShopsBean> ite = shopsDTO.iterator();
-    %>
-
-        shopsDTO-atta<br/>
-        <%=shopsDTO.size()%>
-        <%
         while(ite.hasNext()){
             ShopsBean bean = ite.next();
         %>
