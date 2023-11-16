@@ -126,8 +126,7 @@
         while(ite.hasNext()){
             ShopsBean bean = ite.next();
         %>
-        
-            <%=bean.getShopName()%>, <%=bean.getLocationX()%>, <%=bean.getLocationY()%><br/>
+
             <script>
                 <%=CreatePlot.Plot(bean.getShopName(),bean.getLocationX(),bean.getLocationY(), bean.getShopId())%> 
             </script>
@@ -137,7 +136,7 @@
         %>
 
     <footer>
-        <div class="menu home m-hover"><a href=""></a></div>
+        <div class="menu home m-hover"><a href="https://www.figma.com/proto/79GEbqCywcMVCaU6pvgSsu/JDD-%7C-JP-%2B-UI-Kit-iOS-(Community)?node-id=2405-102&scaling=scale-down&page-id=665%3A290&starting-point-node-id=2405%3A102"><div class="link"></div></a></div>
         <div class="menu spot m-hover"><a href=""></a></div>
         <div class="menu root-blue"></div>
         <div class="menu favo m-hover"><a href=""></a></div>
