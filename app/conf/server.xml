@@ -43,11 +43,11 @@
           description="User database that can be updated and saved"
           factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
           pathname="conf/tomcat-users.xml" />
-<!-- 
+
      <Resource name="jdbc/mydb" auth="Container"
           type="javax.sql.DataSource"
           driverClassName="com.mysql.jdbc.Driver"
-          url="jdbc:mysql://pan_3db:3306/database"
+          url="jdbc:mysql://pan_3db:3305"
           username="pan"
           password="pan"
           maxTotal="20"
@@ -56,7 +56,7 @@
           maxWait="10000"
           initialSize="5"
           maxWaitMillis="5000"/>
- -->
+
   </GlobalNamingResources>
 
   <!-- A "Service" is a collection of one or more "Connectors" that share

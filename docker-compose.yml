@@ -46,7 +46,7 @@ services:
       context: ./database
       dockerfile: Dockerfile
     ports:
-      - "3306:3306"
+      - "3305:3306"
     restart: always
     networks:
       # - appdata_net
@@ -61,7 +61,7 @@ services:
       - db-store:/var/lib/mysql
 
   dbadminer:
-    container_name: pan_3dataadminrs
+    container_name: pan_3adminer
     image: adminer
     ports:
       - "8889:8080"

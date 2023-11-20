@@ -7,7 +7,7 @@ import java.util.Iterator;
 import Bean.*;
 
 public class ShopsDAO {
-    private final String URL = "jdbc:mysql://pan_3db:3306/pan_3db";
+    private final String URL = "jdbc:mysql://pan_3db/pan_3db";
     private final String USER = "pan";
     private final String PASS = "pan";
     private Connection con = null;
