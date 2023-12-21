@@ -29,11 +29,6 @@ services:
     volumes:
       - ./app/deploy/:/usr/local/tomcat/webapps/  # upload内のwarファイルを設置する
       # - ./app/logs/:/usr/local/tomcat/logs  # エラーログを収集したい場合は有効化する
-    # environment:
-    #   - CLASSPATH=/usr/local/tomcat/lib/mysql-connector-j-8.1.0.jar:/usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar:/usr/local/tomcat/lib/servlet-api.jar
-    #   - JRE_HOME=/usr/local/openjdk-21
-    #   - CATALINA_TMPDIR=/usr/local/tomcat/temp
-    #   - CATALINA_BASE=/usr/local/tomcat
     restart: always
     networks:
       # - webapp_net
