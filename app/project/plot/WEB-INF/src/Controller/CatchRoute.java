@@ -16,10 +16,10 @@ import java.util.Iterator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import DAO.ShopsDAO;
 import Bean.RouteBean;
 import Bean.ShopsBean;
 import Bean.ShopsDTO;
-import DAO.ShopsDAO;
 
 @WebServlet("/catch-route")
 public class CatchRoute extends HttpServlet {

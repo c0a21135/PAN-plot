@@ -4,8 +4,11 @@ import java.io.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+
 import DAO.ShopsDAO;
+
+import javax.servlet.annotation.*;
+
 import Bean.ShopsDTO;
 
 @WebServlet("/ShopInfo")

@@ -106,6 +106,11 @@ searchbtn.addEventListener("click", function(){
                 L.latLng(startplot.getLatLng().lat, startplot.getLatLng().lng),
                 L.latLng(goalplot.getLatLng().lat, goalplot.getLatLng().lng)
             ],
+
+            router: L.Routing.osrmv1({ // 指定したサーバーへリクエストを送信する
+                serviceUrl: 'http://127.0.0.1:5000/route/v1'
+            }),
+            
             createMarker: function(i, waypoint, n) {
                 // nullを返すことで新しいマーカーを作成せずに非表示にする
                 return null;

@@ -67,6 +67,22 @@ services:
     depends_on:
       - pan_3db
 
+  osrm-backend:
+    container_name: pan_3osrm
+    build:
+      context: ./osrm
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    # restart: always
+    tty: true
+    networks:
+      - all_net
+    # volumes:
+    #   - ./osrm/kanto/:/data/
+    
+
+
 networks:
   # webapp_net:
   # appdata_net:
